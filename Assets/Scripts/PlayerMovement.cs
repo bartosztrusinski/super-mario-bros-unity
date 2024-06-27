@@ -12,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded { get; private set; }
     public bool isJumping { get; private set; }
+    public bool isRunning => Mathf.Abs(velocity.x) > 0.25f || Math.Abs(inputAxis) > 0.25f;
+    public bool isTurning => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
 
     private new Rigidbody2D rigidbody;
     private new Camera camera;
     private Vector2 velocity;
+    private float inputAxis;
 
     void Awake()
     {
@@ -54,8 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateHorizontalVelocity()
     {
-        float inputAxis = Input.GetAxis("Horizontal");
-
+        inputAxis = Input.GetAxis("Horizontal");
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * movementSpeed, movementSpeed * Time.deltaTime);
 
         if (IsTouchingWall())
