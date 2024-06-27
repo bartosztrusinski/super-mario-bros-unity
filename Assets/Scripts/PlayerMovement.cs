@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateHorizontalVelocity();
 
-        isGrounded = rigidbody.Raycast(0.25f, 0.375f, Vector2.down);
+        isGrounded = IsTouchingGround();
 
         if (isGrounded)
         {
@@ -55,6 +55,21 @@ public class PlayerMovement : MonoBehaviour
     {
         float inputAxis = Input.GetAxis("Horizontal");
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * movementSpeed, movementSpeed * Time.deltaTime);
+
+        if (IsTouchingWall())
+        {
+            velocity.x = 0f;
+        }
+    }
+
+    private bool IsTouchingWall()
+    {
+        return rigidbody.Raycast(0.25f, 0.375f, Vector2.right * velocity.x);
+    }
+
+    private bool IsTouchingGround()
+    {
+        return rigidbody.Raycast(0.25f, 0.375f, Vector2.down);
     }
 
     private void UpdateVerticalVelocity()
