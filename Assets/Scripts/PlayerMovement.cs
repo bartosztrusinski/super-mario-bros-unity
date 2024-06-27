@@ -43,6 +43,14 @@ public class PlayerMovement : MonoBehaviour
         UpdatePosition();
     }
 
+    void OnCollisionEnter2D(Collision2D obstacle)
+    {
+        if (!IsPowerUp(obstacle.gameObject) && IsBumpingHead(obstacle))
+        {
+            velocity.y = 0f;
+        }
+    }
+
     private void UpdateHorizontalVelocity()
     {
         float inputAxis = Input.GetAxis("Horizontal");
@@ -84,5 +92,15 @@ public class PlayerMovement : MonoBehaviour
         nextPosition.x = Mathf.Clamp(nextPosition.x, cameraLeftEdge + playerHalfWidth, cameraRightEdge - playerHalfWidth);
 
         rigidbody.MovePosition(nextPosition);
+    }
+
+    private bool IsPowerUp(GameObject gameObject)
+    {
+        return gameObject.layer == LayerMask.NameToLayer("PowerUp");
+    }
+
+    private bool IsBumpingHead(Collision2D obstacle)
+    {
+        return transform.DotProduct(obstacle.transform, Vector2.up) > 0.3f;
     }
 }

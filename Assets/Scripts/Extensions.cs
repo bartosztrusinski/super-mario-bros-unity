@@ -15,4 +15,10 @@ public static class Extensions
 
         return raycastHit.collider != null && raycastHit.rigidbody != rigidbody;
     }
+
+    public static float DotProduct(this Transform transformA, Transform transformB, Vector2 directionB)
+    {
+        Vector2 directionA = transformB.position - transformA.position;
+        return Vector2.Dot(directionA.normalized, directionB);
+    }
 }
