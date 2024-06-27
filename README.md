@@ -1,5 +1,7 @@
 # Super Mario Bros
 
+![Mario level](mario-level.png)
+
 # Commit rules
 
 - use english language only
