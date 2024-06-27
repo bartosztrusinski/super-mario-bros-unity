@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
             UpdateVerticalVelocity();
         }
 
+        UpdateDirectionRotation();
         ApplyGravity();
         ApplyTerminalVelocity();
     }
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateHorizontalVelocity()
     {
         float inputAxis = Input.GetAxis("Horizontal");
+
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * movementSpeed, movementSpeed * Time.deltaTime);
 
         if (IsTouchingWall())
@@ -82,6 +84,20 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = jumpForce;
             isJumping = true;
         }
+    }
+
+    private void UpdateDirectionRotation()
+    {
+        if (velocity.x == 0f)
+        {
+            return;
+        }
+
+        float playerDirection = velocity.x < 0f ? -1f : 1f;
+        Vector3 nextLocalScale = transform.localScale;
+        nextLocalScale.x = playerDirection;
+
+        transform.localScale = nextLocalScale;
     }
 
     private void ApplyGravity()
