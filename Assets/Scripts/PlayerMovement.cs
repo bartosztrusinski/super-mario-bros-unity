@@ -49,7 +49,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D obstacle)
     {
-        if (!IsPowerUp(obstacle.gameObject) && IsBumpingHead(obstacle))
+        if (IsEnemy(obstacle.gameObject) && IsStomping(obstacle))
+        {
+            velocity.y = JumpForce * 0.5f;
+            IsJumping = true;
+        }
+        else if (!IsPowerUp(obstacle.gameObject) && IsBumpingHead(obstacle))
         {
             velocity.y = 0f;
         }
@@ -125,6 +130,16 @@ public class PlayerMovement : MonoBehaviour
         nextPosition.x = Mathf.Clamp(nextPosition.x, cameraLeftEdge + playerHalfWidth, cameraRightEdge - playerHalfWidth);
 
         rigidbody.MovePosition(nextPosition);
+    }
+
+    private bool IsEnemy(GameObject gameObject)
+    {
+        return gameObject.layer == LayerMask.NameToLayer("Enemy");
+    }
+
+    private bool IsStomping(Collision2D obstacle)
+    {
+        return transform.DotProduct(obstacle.transform, Vector2.down) > 0.3f;
     }
 
     private bool IsPowerUp(GameObject gameObject)

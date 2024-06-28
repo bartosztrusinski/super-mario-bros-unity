@@ -28,6 +28,6 @@ public class Goomba : MonoBehaviour
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = flattenedSprite;
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 0.75f);
     }
 }
