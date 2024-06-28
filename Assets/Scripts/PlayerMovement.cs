@@ -7,13 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpHeight = 5f; // In units
     public float maxJumpTime = 1f; // In seconds
 
-    public float jumpForce => (2f * maxJumpHeight) / (maxJumpTime * 0.5f);
-    public float gravity => (-2f * maxJumpHeight) / Mathf.Pow(maxJumpTime * 0.5f, 2f);
+    public float JumpForce => (2f * maxJumpHeight) / (maxJumpTime * 0.5f);
+    public float Gravity => (-2f * maxJumpHeight) / Mathf.Pow(maxJumpTime * 0.5f, 2f);
 
-    public bool isGrounded { get; private set; }
-    public bool isJumping { get; private set; }
-    public bool isRunning => Mathf.Abs(velocity.x) > 0.25f || Math.Abs(inputAxis) > 0.25f;
-    public bool isTurning => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
+    public bool IsGrounded { get; private set; }
+    public bool IsJumping { get; private set; }
+    public bool IsRunning => Mathf.Abs(velocity.x) > 0.25f || Math.Abs(inputAxis) > 0.25f;
+    public bool IsTurning => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
 
     private new Rigidbody2D rigidbody;
     private new Camera camera;
@@ -30,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateHorizontalVelocity();
 
-        isGrounded = IsTouchingGround();
+        IsGrounded = IsTouchingGround();
 
-        if (isGrounded)
+        if (IsGrounded)
         {
             UpdateVerticalVelocity();
         }
@@ -79,12 +79,12 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateVerticalVelocity()
     {
         velocity.y = Mathf.Max(velocity.y, 0f);
-        isJumping = velocity.y > 0f;
+        IsJumping = velocity.y > 0f;
 
         if (Input.GetButtonDown("Jump"))
         {
-            velocity.y = jumpForce;
-            isJumping = true;
+            velocity.y = JumpForce;
+            IsJumping = true;
         }
     }
 
@@ -107,12 +107,12 @@ public class PlayerMovement : MonoBehaviour
         bool isFalling = velocity.y < 0f || !Input.GetButton("Jump");
         float multiplier = isFalling ? 2f : 1f;
 
-        velocity.y += gravity * multiplier * Time.deltaTime;
+        velocity.y += Gravity * multiplier * Time.deltaTime;
     }
 
     private void ApplyTerminalVelocity()
     {
-        velocity.y = Mathf.Max(velocity.y, gravity * 0.4f);
+        velocity.y = Mathf.Max(velocity.y, Gravity * 0.4f);
     }
 
     private void UpdatePosition()

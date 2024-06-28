@@ -28,11 +28,11 @@ public class PlayerSpriteRenderer : MonoBehaviour
 
     void LateUpdate()
     {
-        run.enabled = playerMovement.isRunning;
+        run.enabled = playerMovement.IsRunning;
 
         spriteRenderer.sprite =
-            playerMovement.isJumping ? jump
-            : playerMovement.isTurning ? slide
-            : !playerMovement.isRunning ? idle : spriteRenderer.sprite;
+            playerMovement.IsJumping ? jump
+            : playerMovement.IsTurning ? slide
+            : !playerMovement.IsRunning ? idle : spriteRenderer.sprite;
     }
 }
