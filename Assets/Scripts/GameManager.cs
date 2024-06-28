@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public int Stage { get; private set; }
     public int Lives { get; private set; }
 
+    public int coins { get; private set; }
+
     private readonly int stagesPerWorld = 4;
     private readonly int maxLives = 3;
 
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     {
         Lives = maxLives;
         LoadLevel(1, 1);
+        coins = 0;
     }
 
     public void NextLevel()
@@ -58,6 +61,27 @@ public class GameManager : MonoBehaviour
     {
         StartNewGame();
     }
+
+    public void AddCoin() {
+
+        coins++;
+        if (coins == 100) {
+        
+            AddLife();
+            coins = 0;
+        
+        
+        }
+
+
+    }
+
+    public void AddLife() {
+
+        Lives++;
+    
+    }
+
 
     #region Singleton
     public static GameManager Instance { get; private set; }

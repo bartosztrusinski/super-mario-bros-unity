@@ -38,6 +38,16 @@ public class Koopa : MonoBehaviour
             else
             {
                 Player player = collider.GetComponent<Player>();
+
+                if (player.starpower) {
+
+                    GetHit();
+
+                } else {
+                    player.GetHit();
+                }
+                    
+
                 player.GetHit();
             }
         }
