@@ -20,6 +20,14 @@ public class Goomba : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (IsShell(collider))
+        {
+            GetHit();
+        }
+    }
+
     private bool IsPlayer(GameObject gameObject)
     {
         return gameObject.CompareTag("Player");
@@ -30,6 +38,11 @@ public class Goomba : MonoBehaviour
         return collision.transform.DotProduct(transform, Vector2.down) > 0.3f;
     }
 
+    private bool IsShell(Collider2D collider)
+    {
+        return collider.gameObject.layer == LayerMask.NameToLayer("Shell");
+    }
+
     private void Flatten()
     {
         GetComponent<Collider2D>().enabled = false;
@@ -37,5 +50,12 @@ public class Goomba : MonoBehaviour
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = flattenedSprite;
         Destroy(gameObject, 0.75f);
+    }
+
+    private void GetHit()
+    {
+        GetComponent<AnimatedSprite>().enabled = false;
+        GetComponent<DeathAnimation>().enabled = true;
+        Destroy(gameObject, 3f);
     }
 }

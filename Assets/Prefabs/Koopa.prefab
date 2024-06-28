@@ -12,8 +12,11 @@ GameObject:
   - component: {fileID: 8307218097833604423}
   - component: {fileID: 3965009954411875174}
   - component: {fileID: 9024763571946364682}
+  - component: {fileID: 8745304829000719163}
   - component: {fileID: 4964689334838848996}
   - component: {fileID: 5888513663404646664}
+  - component: {fileID: 7526030021071106648}
+  - component: {fileID: 305401707426937387}
   m_Layer: 7
   m_Name: Koopa
   m_TagString: Untagged
@@ -150,6 +153,51 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.25}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!61 &8745304829000719163
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976907029725262765}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.25}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1.5}
+    newSize: {x: 1, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.25, y: 1.25}
+  m_EdgeRadius: 0
 --- !u!114 &4964689334838848996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +228,31 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e99d4beaf2cf4fc42b25bca2febe11a3, type: 3}
   - {fileID: 21300000, guid: e2b72e8f339734a4388e228817cd332a, type: 3}
   frameRate: 0.25
+--- !u!114 &7526030021071106648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976907029725262765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf8de035a99afc4aa0f622521ffd12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellSprite: {fileID: 21300000, guid: d7c8aca0a8f66704ea7a2e70daf7ebe4, type: 3}
+  shellSpeed: 12
+--- !u!114 &305401707426937387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976907029725262765}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18608f7c78a635341bec652ad5782ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8307218097833604423}
+  deadSprite: {fileID: 0}

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8380926493701155221}
   - component: {fileID: 4944538652893177938}
   - component: {fileID: 2742495246301328279}
+  - component: {fileID: 4360229992332335094}
   m_Layer: 7
   m_Name: Goomba
   m_TagString: Untagged
@@ -194,3 +195,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flattenedSprite: {fileID: 21300000, guid: d65c1ccc7bd053341bbce29f3fb7be2b, type: 3}
+--- !u!114 &4360229992332335094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153275536034820638}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18608f7c78a635341bec652ad5782ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 9132580139863961739}
+  deadSprite: {fileID: 0}
