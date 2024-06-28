@@ -60,20 +60,20 @@ public class PlayerMovement : MonoBehaviour
         inputAxis = Input.GetAxis("Horizontal");
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * movementSpeed, movementSpeed * Time.deltaTime);
 
-        if (IsTouchingWall())
+        if (IsRunningIntoObstacle())
         {
             velocity.x = 0f;
         }
     }
 
-    private bool IsTouchingWall()
+    private bool IsRunningIntoObstacle()
     {
-        return rigidbody.Raycast(0.25f, 0.375f, Vector2.right * velocity.x);
+        return rigidbody.Raycast(Vector2.right * velocity.x);
     }
 
     private bool IsTouchingGround()
     {
-        return rigidbody.Raycast(0.25f, 0.375f, Vector2.down);
+        return rigidbody.Raycast(Vector2.down);
     }
 
     private void UpdateVerticalVelocity()
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyTerminalVelocity()
     {
-        velocity.y = Mathf.Max(velocity.y, Gravity * 0.4f);
+        velocity.y = Mathf.Max(velocity.y, Gravity * 0.6f);
     }
 
     private void UpdatePosition()
