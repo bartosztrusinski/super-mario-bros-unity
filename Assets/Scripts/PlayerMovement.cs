@@ -7,13 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpHeight = 5f; // In units
     public float maxJumpTime = 1f; // In seconds
 
-    public float jumpForce => (2f * maxJumpHeight) / (maxJumpTime * 0.5f);
-    public float gravity => (-2f * maxJumpHeight) / Mathf.Pow(maxJumpTime * 0.5f, 2f);
+    public float JumpForce => (2f * maxJumpHeight) / (maxJumpTime * 0.5f);
+    public float Gravity => (-2f * maxJumpHeight) / Mathf.Pow(maxJumpTime * 0.5f, 2f);
 
-    public bool isGrounded { get; private set; }
-    public bool isJumping { get; private set; }
-    public bool isRunning => Mathf.Abs(velocity.x) > 0.25f || Math.Abs(inputAxis) > 0.25f;
-    public bool isTurning => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
+    public bool IsGrounded { get; private set; }
+    public bool IsJumping { get; private set; }
+    public bool IsRunning => Mathf.Abs(velocity.x) > 0.25f || Math.Abs(inputAxis) > 0.25f;
+    public bool IsTurning => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
 
     private new Rigidbody2D rigidbody;
     private new Camera camera;
@@ -30,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateHorizontalVelocity();
 
-        isGrounded = IsTouchingGround();
+        IsGrounded = IsTouchingGround();
 
-        if (isGrounded)
+        if (IsGrounded)
         {
             UpdateVerticalVelocity();
         }
@@ -49,7 +49,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D obstacle)
     {
-        if (!IsPowerUp(obstacle.gameObject) && IsBumpingHead(obstacle))
+        if (IsEnemy(obstacle.gameObject) && IsStomping(obstacle))
+        {
+            velocity.y = JumpForce * 0.5f;
+            IsJumping = true;
+        }
+        else if (!IsPowerUp(obstacle.gameObject) && IsBumpingHead(obstacle))
         {
             velocity.y = 0f;
         }
@@ -60,31 +65,31 @@ public class PlayerMovement : MonoBehaviour
         inputAxis = Input.GetAxis("Horizontal");
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * movementSpeed, movementSpeed * Time.deltaTime);
 
-        if (IsTouchingWall())
+        if (IsRunningIntoObstacle())
         {
             velocity.x = 0f;
         }
     }
 
-    private bool IsTouchingWall()
+    private bool IsRunningIntoObstacle()
     {
-        return rigidbody.Raycast(0.25f, 0.375f, Vector2.right * velocity.x);
+        return rigidbody.Raycast(Vector2.right * velocity.x);
     }
 
     private bool IsTouchingGround()
     {
-        return rigidbody.Raycast(0.25f, 0.375f, Vector2.down);
+        return rigidbody.Raycast(Vector2.down);
     }
 
     private void UpdateVerticalVelocity()
     {
         velocity.y = Mathf.Max(velocity.y, 0f);
-        isJumping = velocity.y > 0f;
+        IsJumping = velocity.y > 0f;
 
         if (Input.GetButtonDown("Jump"))
         {
-            velocity.y = jumpForce;
-            isJumping = true;
+            velocity.y = JumpForce;
+            IsJumping = true;
         }
     }
 
@@ -107,12 +112,12 @@ public class PlayerMovement : MonoBehaviour
         bool isFalling = velocity.y < 0f || !Input.GetButton("Jump");
         float multiplier = isFalling ? 2f : 1f;
 
-        velocity.y += gravity * multiplier * Time.deltaTime;
+        velocity.y += Gravity * multiplier * Time.deltaTime;
     }
 
     private void ApplyTerminalVelocity()
     {
-        velocity.y = Mathf.Max(velocity.y, gravity * 0.4f);
+        velocity.y = Mathf.Max(velocity.y, Gravity * 0.6f);
     }
 
     private void UpdatePosition()
@@ -125,6 +130,16 @@ public class PlayerMovement : MonoBehaviour
         nextPosition.x = Mathf.Clamp(nextPosition.x, cameraLeftEdge + playerHalfWidth, cameraRightEdge - playerHalfWidth);
 
         rigidbody.MovePosition(nextPosition);
+    }
+
+    private bool IsEnemy(GameObject gameObject)
+    {
+        return gameObject.layer == LayerMask.NameToLayer("Enemy");
+    }
+
+    private bool IsStomping(Collision2D obstacle)
+    {
+        return transform.DotProduct(obstacle.transform, Vector2.down) > 0.3f;
     }
 
     private bool IsPowerUp(GameObject gameObject)
