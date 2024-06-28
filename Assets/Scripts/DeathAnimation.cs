@@ -21,7 +21,7 @@ public class DeathAnimation : MonoBehaviour
     private void UpdateSprite()
     {
         spriteRenderer.enabled = true;
-        spriteRenderer.sortingOrder = 100;
+        spriteRenderer.sortingOrder = 10;
 
         if (deadSprite != null)
         {
@@ -42,12 +42,12 @@ public class DeathAnimation : MonoBehaviour
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
         EntityMovement entityMovement = GetComponent<EntityMovement>();
 
-        if (playerMovement)
+        if (playerMovement != null)
         {
             playerMovement.enabled = false;
         }
 
-        if (entityMovement)
+        if (entityMovement != null)
         {
             entityMovement.enabled = false;
         }

@@ -6,9 +6,17 @@ public class Goomba : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (IsPlayer(collision.gameObject) && IsGettingStomped(collision))
+        if (IsPlayer(collision.gameObject))
         {
-            Flatten();
+            if (IsGettingStomped(collision))
+            {
+                Flatten();
+            }
+            else
+            {
+                Player player = collision.gameObject.GetComponent<Player>();
+                player.GetHit();
+            }
         }
     }
 
