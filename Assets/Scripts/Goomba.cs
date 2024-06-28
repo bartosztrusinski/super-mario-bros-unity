@@ -6,15 +6,15 @@ public class Goomba : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (IsCollidingWithPlayer(collision) && IsGettingStomped(collision))
+        if (IsPlayer(collision.gameObject) && IsGettingStomped(collision))
         {
             Flatten();
         }
     }
 
-    private bool IsCollidingWithPlayer(Collision2D collision)
+    private bool IsPlayer(GameObject gameObject)
     {
-        return collision.gameObject.CompareTag("Player");
+        return gameObject.CompareTag("Player");
     }
 
     private bool IsGettingStomped(Collision2D collision)
