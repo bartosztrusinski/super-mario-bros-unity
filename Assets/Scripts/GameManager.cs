@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoadLevel(int world, int stage)
+    public void LoadLevel(int world, int stage)
     {
         World = world;
         Stage = stage;
