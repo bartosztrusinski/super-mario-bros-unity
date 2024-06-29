@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsRunning => Mathf.Abs(velocity.x) > 0.25f || Math.Abs(inputAxis) > 0.25f;
     public bool IsTurning => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
 
+    public AudioSource jumpSound;
+
     private new Rigidbody2D rigidbody;
     private new Camera camera;
     private Vector2 velocity;
@@ -88,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            jumpSound.Play();
             velocity.y = JumpForce;
             IsJumping = true;
         }

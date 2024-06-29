@@ -4,16 +4,15 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public PlayerSpriteRenderer smallSpriteRenderer, bigSpriteRenderer;
-    private PlayerSpriteRenderer activeRenderer;
-
     public bool IsBig => bigSpriteRenderer.enabled;
     public bool IsSmall => smallSpriteRenderer.enabled;
     public bool IsDead => deathAnimation.enabled;
+    public bool IsStarPower { get; private set; }
+    public AudioSource powerUpSound;
 
     private DeathAnimation deathAnimation;
     private CapsuleCollider2D capsuleCollider;
-    public bool starpower { get; private set; }
-
+    private PlayerSpriteRenderer activeRenderer;
 
     void Awake()
     {
@@ -46,6 +45,7 @@ public class Player : MonoBehaviour
 
     public void Grow()
     {
+        powerUpSound.Play();
         smallSpriteRenderer.enabled = false;
         bigSpriteRenderer.enabled = true;
         activeRenderer = bigSpriteRenderer;
@@ -93,12 +93,12 @@ public class Player : MonoBehaviour
 
     public void Starpower()
     {
-        StartCoroutine(StarpowerAnimation());
+        StartCoroutine(StarPowerAnimation());
     }
 
-    private IEnumerator StarpowerAnimation()
+    private IEnumerator StarPowerAnimation()
     {
-        starpower = true;
+        IsStarPower = true;
 
         float elapsed = 0f;
         float duration = 10f;
@@ -116,6 +116,6 @@ public class Player : MonoBehaviour
         }
 
         activeRenderer.spriteRenderer.color = Color.white;
-        starpower = false;
+        IsStarPower = false;
     }
 }

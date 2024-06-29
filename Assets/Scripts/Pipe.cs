@@ -10,12 +10,9 @@ public class Pipe : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (connection != null && other.CompareTag("Player"))
+        if (connection != null && other.CompareTag("Player") && Input.GetKey(enterKeyCode))
         {
-            if (Input.GetKey(enterKeyCode))
-            {
-                StartCoroutine(Enter(other.transform));
-            }
+            StartCoroutine(Enter(other.transform));
         }
     }
 
@@ -29,8 +26,8 @@ public class Pipe : MonoBehaviour
         yield return Move(player, enteredPosition, enteredScale);
         yield return new WaitForSeconds(1f);
 
-        var sideSrolling = Camera.main.GetComponent<SideScrolling>();
-        sideSrolling.SetUnderground(connection.position.y < sideSrolling.undergroundThreshold);
+        SideScrolling sideScrolling = Camera.main.GetComponent<SideScrolling>();
+        sideScrolling.SetUnderground(connection.position.y < sideScrolling.undergroundThreshold);
 
         if (exitDirection != Vector3.zero)
         {

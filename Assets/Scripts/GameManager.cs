@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
     public int Stage { get; private set; }
     public int Lives { get; private set; }
 
-    public int coins { get; private set; }
+    public int Coins { get; private set; }
+    public AudioSource groundMusic;
+    public AudioSource gameOverSound;
+    public AudioSource lostLifeSound;
+    public AudioSource coinSound;
 
     private readonly int stagesPerWorld = 4;
     private readonly int maxLives = 3;
@@ -21,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         Lives = maxLives;
         LoadLevel(1, 1);
-        coins = 0;
+        Coins = 0;
     }
 
     public void NextLevel()
@@ -33,6 +37,17 @@ public class GameManager : MonoBehaviour
 
     public void ResetLevel(float delaySeconds)
     {
+        groundMusic.Stop();
+
+        if (Lives - 1 > 0)
+        {
+            lostLifeSound.Play();
+        }
+        else
+        {
+            gameOverSound.Play();
+        }
+
         Invoke(nameof(ResetLevel), delaySeconds);
     }
 
@@ -54,6 +69,7 @@ public class GameManager : MonoBehaviour
     {
         World = world;
         Stage = stage;
+        groundMusic.Play();
         SceneManager.LoadScene($"{world}-{stage}");
     }
 
@@ -62,24 +78,21 @@ public class GameManager : MonoBehaviour
         StartNewGame();
     }
 
-    public void AddCoin() {
+    public void AddCoin()
+    {
+        Coins++;
+        coinSound.Play();
 
-        coins++;
-        if (coins == 100) {
-        
+        if (Coins == 100)
+        {
             AddLife();
-            coins = 0;
-        
-        
+            Coins = 0;
         }
-
-
     }
 
-    public void AddLife() {
-
+    public void AddLife()
+    {
         Lives++;
-    
     }
 
 
