@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public bool IsBig => bigSpriteRenderer.enabled;
     public bool IsSmall => smallSpriteRenderer.enabled;
     public bool IsDead => deathAnimation.enabled;
-    public bool IsStarPower { get; private set; }
+    public bool HasStarPower { get; private set; }
     public AudioSource powerUpSound;
 
     private DeathAnimation deathAnimation;
@@ -91,14 +91,14 @@ public class Player : MonoBehaviour
         activeRenderer.enabled = true;
     }
 
-    public void Starpower()
+    public void GetStarPower()
     {
         StartCoroutine(StarPowerAnimation());
     }
 
     private IEnumerator StarPowerAnimation()
     {
-        IsStarPower = true;
+        HasStarPower = true;
 
         float elapsed = 0f;
         float duration = 10f;
@@ -116,6 +116,6 @@ public class Player : MonoBehaviour
         }
 
         activeRenderer.spriteRenderer.color = Color.white;
-        IsStarPower = false;
+        HasStarPower = false;
     }
 }

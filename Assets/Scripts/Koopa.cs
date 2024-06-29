@@ -21,7 +21,7 @@ public class Koopa : MonoBehaviour
             {
                 Player player = collision.gameObject.GetComponent<Player>();
 
-                if (player.IsStarPower)
+                if (player.HasStarPower)
                 {
 
                     GetHit();
@@ -49,7 +49,7 @@ public class Koopa : MonoBehaviour
             {
                 Player player = collider.GetComponent<Player>();
 
-                if (player.IsStarPower)
+                if (player.HasStarPower)
                 {
 
                     GetHit();

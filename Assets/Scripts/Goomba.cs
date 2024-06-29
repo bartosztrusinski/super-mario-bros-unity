@@ -6,29 +6,21 @@ public class Goomba : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (IsPlayer(collision.gameObject))
+        if (!IsPlayer(collision.gameObject))
         {
-            if (IsGettingStomped(collision))
-            {
-                Flatten();
-            }
-            else
-            {
-                Player player = collision.gameObject.GetComponent<Player>();
+            return;
+        }
 
-                if (player.IsStarPower)
-                {
-                    Flatten();
-                }
-                else
-                {
+        Player player = collision.gameObject.GetComponent<Player>();
 
-                    player.GetHit();
+        if (IsGettingStomped(collision) || player.HasStarPower)
+        {
+            Flatten();
+        }
+        else
+        {
+            player.GetHit();
 
-
-                }
-
-            }
         }
     }
 
