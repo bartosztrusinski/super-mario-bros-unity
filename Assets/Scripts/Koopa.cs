@@ -20,7 +20,17 @@ public class Koopa : MonoBehaviour
             else
             {
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.GetHit();
+
+                if (player.starpower)
+                {
+
+                    GetHit();
+
+                }
+                else
+                {
+                    player.GetHit();
+                }
             }
         }
     }
@@ -38,6 +48,16 @@ public class Koopa : MonoBehaviour
             else
             {
                 Player player = collider.GetComponent<Player>();
+
+                if (player.starpower) {
+
+                    GetHit();
+
+                } else {
+                    player.GetHit();
+                }
+                    
+
                 player.GetHit();
             }
         }

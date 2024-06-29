@@ -15,7 +15,18 @@ public class Goomba : MonoBehaviour
             else
             {
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.GetHit();
+
+                if (player.starpower)
+                {
+                    Flatten();
+                }
+                else {
+
+                    player.GetHit();
+
+
+                }
+
             }
         }
     }

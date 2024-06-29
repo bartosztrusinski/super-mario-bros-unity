@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7346826481534254216
+--- !u!1 &8521396556296883163
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7838619475557026573}
-  - component: {fileID: 1652399629603521180}
-  - component: {fileID: 8903653416829656199}
-  - component: {fileID: -1722773181858752569}
-  m_Layer: 0
-  m_Name: MysteryBlock
+  - component: {fileID: 6614658998112221205}
+  - component: {fileID: 8240793161368862452}
+  - component: {fileID: 9114931065745896200}
+  - component: {fileID: 2254074743017133649}
+  m_Layer: 6
+  m_Name: CoinEnderground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7838619475557026573
+--- !u!4 &6614658998112221205
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346826481534254216}
+  m_GameObject: {fileID: 8521396556296883163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1652399629603521180
+--- !u!212 &8240793161368862452
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346826481534254216}
+  m_GameObject: {fileID: 8521396556296883163}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,28 +74,28 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b5e7a4eab1c2f1d41856f2cc63722741, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: e98bf71ac5b85ab449d56df439582c10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8903653416829656199
+--- !u!61 &9114931065745896200
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346826481534254216}
+  m_GameObject: {fileID: 8521396556296883163}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: fc5fd94f3e0028e478f521ad841c4b2d, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -125,24 +125,22 @@ BoxCollider2D:
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-1722773181858752569
+--- !u!114 &2254074743017133649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346826481534254216}
+  m_GameObject: {fileID: 8521396556296883163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7128b3b8565a6640bbf44cdd77fbf7b, type: 3}
+  m_Script: {fileID: 11500000, guid: a3a00a0209c19ed438ad002854a3589d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 7423496009372752334, guid: a5a96d93a32bc1a4eb49637a8014f160, type: 3}
-  emptyBlock: {fileID: 21300000, guid: ecc65546b2c74f5459b0ac204ef5e51b, type: 3}
-  maxHits: 1
+  type: 0
