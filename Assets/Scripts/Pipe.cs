@@ -10,13 +10,10 @@ public class Pipe : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("PIPE TRIGGERED");
         if (connection != null && other.CompareTag("Player"))
         {
-            Debug.Log("IS CONNECTION AND PLAYER");
             if (Input.GetKey(enterKeyCode))
             {
-                Debug.Log("ENTER KEY PRESSED");
                 StartCoroutine(Enter(other.transform));
             }
         }
